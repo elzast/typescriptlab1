@@ -9,7 +9,7 @@ let mountains: Mountain[] = [
 ];
 
 const findNameOfTallestMountain = (anArrayOfMountains: Mountain[]): string => {
-  let tallestMountain = anArrayOfMountains[0];
+  let tallestMountain: Mountain = anArrayOfMountains[0];
   anArrayOfMountains.forEach((mountain) => {
     if (tallestMountain.height < mountain.height) {
       tallestMountain = mountain;
@@ -17,7 +17,10 @@ const findNameOfTallestMountain = (anArrayOfMountains: Mountain[]): string => {
   });
   return tallestMountain.name;
 };
-
+/*
+==== for loop option in class repo==
+====for of in class repo====
+*/
 console.log(findNameOfTallestMountain(mountains));
 
 interface Product {
@@ -31,7 +34,10 @@ let products: Product[] = [
 ];
 
 const calcAverageProductPrice = (anArrayOfProducts: Product[]) => {
-  let total = 0;
+  if (anArrayOfProducts.length === 0) {
+    return 0;
+  }
+  let total: number = 0;
   for (let i = 0; i < anArrayOfProducts.length; i++) {
     total += anArrayOfProducts[i].price;
   }
@@ -44,14 +50,16 @@ interface InventoryItem {
   quantity: number;
 }
 let inventory: InventoryItem[] = [
-  { name: "motor", price: 30, quantity: 10 },
-  { name: "sensor", price: 30, quantity: 4 },
-  { name: "LED", price: 30, quantity: 20 },
+  { product: { name: "motor", price: 30 }, quantity: 10 },
+  { product: { name: "sensor", price: 30 }, quantity: 4 },
+  { product: { name: "LED", price: 30 }, quantity: 20 },
 ];
 
-const calcInventoryValue = (anArrayOfItem: InventoryItem[]) => {
+const calcInventoryValue = (
+  anArrayOfInventoryItems: InventoryItem[]
+): number => {
   let totalValue = 0;
-  anArrayOfInventoryItems.forEach((item: InventoryItem[]) => {
+  anArrayOfInventoryItems.forEach((item) => {
     totalValue += item.product.price * item.quantity;
   });
   return totalValue;
